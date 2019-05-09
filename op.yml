@@ -1,0 +1,70 @@
+description: returns a set of temporary security credentials that you can use to access AWS resources that you might not normally have access to
+inputs:
+  accessKeyId:
+    string:
+      constraints: { minLength: 20 }
+      description: access key for AWS
+  region:
+    string:
+      constraints: { minLength: 1 }
+      description: default region
+      default: us-west-2
+  roleArn:
+    string:
+      constraints: { minLength: 1 }
+      description:
+        amazon resource identifier (ARN) of the role to assume
+        Use the role session name to uniquely identify a session when the same role is assumed by different principals or for different reasons.
+        In cross-account scenarios, the role session name is visible to, and can be logged by the account that owns the role.
+        The role session name is also used in the ARN of the assumed role principal.
+        This means that subsequent cross-account API requests that use the temporary security credentials will expose the role session name to the external account in their AWS CloudTrail logs.
+  roleSessionName:
+    string:
+      constraints:
+        minLength: 1
+        pattern: ^[-a-zA-Z=,.@0-9]*$
+      description: identifier for the assumed role session
+  secretAccessKey:
+    string:
+      constraints: { minLength: 20 }
+      description: secret access key for AWS
+      isSecret: true
+outputs:
+  result:
+    object:
+      constraints:
+        properties:
+          AssumedRoleUser:
+            properties:
+              AssumedRoleId:
+                type: string
+              Arn:
+                type: string
+            type: object
+          Credentials:
+            properties:
+              SecretAccessKey:
+                type: string
+              SessionToken:
+                type: string
+              Expiration:
+                type: string
+              AccessKeyId:
+                type: string
+      description: assumed role
+name: github.com/opspec-pkgs/aws.sts.assume-role
+opspec: 0.1.6
+run:
+  container:
+    image: { ref: 'opspecpkgs/aws.sts.assume-role:1.0.0' }
+    cmd: [/cmd.sh]
+    envVars:
+      AWS_ACCESS_KEY_ID: $(accessKeyId)
+      AWS_DEFAULT_REGION: $(region)
+      AWS_SECRET_ACCESS_KEY: $(secretAccessKey)
+      roleArn:
+      roleSessionName:
+    files:
+      /cmd.sh:
+      /result: $(result)
+version: 1.0.0
