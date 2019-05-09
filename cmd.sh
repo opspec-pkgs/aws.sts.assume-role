@@ -4,4 +4,4 @@ aws \
     sts \
     assume-role \
     --role-arn "$roleArn" \
-    --role-session-name "$roleSessionName"
+    --role-session-name "$roleSessionName" > /result
