@@ -37,6 +37,7 @@ op:
     secretAccessKey:
     ### optional; uncomment to override default(s)
     # region: us-west-2
+    # sessionToken: ""
   outputs:
     result:
 ```

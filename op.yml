@@ -29,6 +29,11 @@ inputs:
       constraints: { minLength: 20 }
       description: secret access key for AWS
       isSecret: true
+  sessionToken:
+    string:
+      description: session token from temporary session, not required
+      isSecret: true
+      default: ""
 outputs:
   result:
     object:
@@ -62,6 +67,7 @@ run:
       AWS_ACCESS_KEY_ID: $(accessKeyId)
       AWS_DEFAULT_REGION: $(region)
       AWS_SECRET_ACCESS_KEY: $(secretAccessKey)
+      AWS_SESSION_TOKEN: $(sessionToken)
       roleArn:
       roleSessionName:
     files:
