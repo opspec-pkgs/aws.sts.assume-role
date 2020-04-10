@@ -15,29 +15,28 @@ the op uses [![opspec 0.1.6](https://img.shields.io/badge/opspec-0.1.6-brightgre
 ## Install
 
 ```shell
-opctl op install github.com/opspec-pkgs/aws.sts.assume-role#1.0.0
+opctl op install github.com/opspec-pkgs/aws.sts.assume-role#1.1.0
 ```
 
 ## Run
 
 ```
-opctl run github.com/opspec-pkgs/aws.sts.assume-role#1.0.0
+opctl run github.com/opspec-pkgs/aws.sts.assume-role#1.1.0
 ```
 
 ## Compose
 
 ```yaml
 op:
-  ref: github.com/opspec-pkgs/aws.sts.assume-role#1.0.0
+  ref: github.com/opspec-pkgs/aws.sts.assume-role#1.1.0
   inputs:
-    # required
-    accessKeyId:
-    roleArn:
-    roleSessionName:
-    secretAccessKey:
-    ### optional; uncomment to override default(s)
-    # region: us-west-2
-    # sessionToken: ""
+    accessKeyId:  # 👈 required; provide a value
+    roleArn:  # 👈 required; provide a value
+    roleSessionName:  # 👈 required; provide a value
+    secretAccessKey:  # 👈 required; provide a value
+  ## uncomment to override defaults
+  #   region: "us-west-2"
+  #   sessionToken: ""
   outputs:
     result:
 ```

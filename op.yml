@@ -31,7 +31,7 @@ inputs:
       isSecret: true
   sessionToken:
     string:
-      description: session token from temporary session, not required
+      description: default session token from temporary session
       isSecret: true
       default: ""
 outputs:
@@ -73,4 +73,4 @@ run:
     files:
       /cmd.sh:
       /result: $(result)
-version: 1.0.0
+version: 1.1.0
