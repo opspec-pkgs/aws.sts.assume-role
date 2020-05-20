@@ -34,6 +34,10 @@ inputs:
       description: default session token from temporary session
       isSecret: true
       default: ""
+  sessionDuration:
+    number:
+      description: session duration in seconds
+      default: 900
 outputs:
   result:
     object:
@@ -70,6 +74,7 @@ run:
       AWS_SESSION_TOKEN: $(sessionToken)
       roleArn:
       roleSessionName:
+      sessionDuration:
     files:
       /cmd.sh:
       /result: $(result)
