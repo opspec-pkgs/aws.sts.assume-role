@@ -36,6 +36,7 @@ op:
     secretAccessKey:  # 👈 required; provide a value
   ## uncomment to override defaults
   #   region: "us-west-2"
+  #   sessionDuration: 900
   #   sessionToken: ""
   outputs:
     result:
